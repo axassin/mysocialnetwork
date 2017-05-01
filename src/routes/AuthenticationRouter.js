@@ -1,8 +1,9 @@
-import postRouter from './PostRouter'
 import KoaRouter from 'koa-router';
+import authenticate from '../middleware/authentication';
 
 const router = new KoaRouter();
 
-router.use('/api/posts', postRouter.routes())
+router
+	.post('/', authenticate)
 
 export default router

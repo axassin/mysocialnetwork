@@ -5,6 +5,11 @@ const list = async (ctx) => {
 	ctx.body = posts
 }
 
+const add = (ctx) => {
+	Post.store(ctx.request.body)
+}
+
 export default {
-	list
+	list,
+	add
 }

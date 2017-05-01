@@ -15,8 +15,12 @@ PostSchema.statics = {
 	list() {
 		return this.find()
 	},
-	save(data) {
-		this.save(data)
+	store(data) {
+		let Post = mongoose.model('Post', PostSchema);
+		let  newPost = new Post(data);
+		newPost.save(function(err){
+			console.log(err)
+		})
 	}
 }
 

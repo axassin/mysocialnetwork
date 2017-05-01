@@ -3,10 +3,11 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import KoaRouter from 'koa-router';
 import http from 'http';
-import mainRouter from './routes/mainRouter'
+import mainRouter from './routes/_mainRouter'
 import mongoose from 'mongoose'
 import config from './configs/development'
 import Promise from 'bluebird'
+import jwt from './middleware/jwt'
 
 export default async function createServer(opts) {
 	const app = new Koa();
@@ -19,14 +20,8 @@ export default async function createServer(opts) {
 	})
 
 	app.use(bodyParser());
-	
+	// app.use(jwt)
 	app.use(mainRouter.routes())
-
-	mongoose.set('debug', (collectionName, method, query, doc) => {
-	console.log(collectionName);
-	console.log(method);
-	});
-	// app.use(router.routes())
 
 	app.use((ctx) => {
 		if(ctx.method === 'GET') {
@@ -36,8 +31,6 @@ export default async function createServer(opts) {
 		}
 	})
 
-	
-	
 	let server = http.createServer(app.callback())
 	server.listen(opts.port)
 }
