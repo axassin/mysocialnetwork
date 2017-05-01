@@ -1,9 +1,10 @@
 import createServer from './createServer'
-import { port } from './configs/development'
-const PORT = 8080
+import config from './configs/development'
 
-createServer({ port : PORT}).then(()=> {
-	console.info('App server started on port ', PORT)
+
+createServer(config).then(()=> {
+	
+	console.info('App server started on port ', config.port)
 }, err => {
 	console.error('Ohh Yeah Could not start')
 	console.log(err)

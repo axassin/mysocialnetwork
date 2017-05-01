@@ -9,18 +9,22 @@ import config from './configs/development'
 import Promise from 'bluebird'
 import jwt from './middleware/jwt'
 
-export default async function createServer(opts) {
+export default async function createServer({ port , database }) {
+
 	const app = new Koa();
 	const router = new KoaRouter();
 	mongoose.Promise = Promise
-	mongoose.connect(config.db)
+
+	mongoose.connect(database)
 	const db = mongoose.connection
+
 	db.on('open', () => {
 		console.info('Connected to database')
 	})
 
 	app.use(bodyParser());
 	// app.use(jwt)
+	
 	app.use(mainRouter.routes())
 
 	app.use((ctx) => {
@@ -32,5 +36,5 @@ export default async function createServer(opts) {
 	})
 
 	let server = http.createServer(app.callback())
-	server.listen(opts.port)
+	server.listen(port)
 }

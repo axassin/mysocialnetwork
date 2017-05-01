@@ -1,5 +1,5 @@
 const config = {
-	db : 'mongodb://localhost/socialnetwork',
+	database : 'mongodb://localhost/socialnetwork',
 	port : 8080
 }
 
