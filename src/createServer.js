@@ -8,11 +8,14 @@ import mongoose from 'mongoose'
 import config from './configs/development'
 import Promise from 'bluebird'
 import jwt from './middleware/jwt'
+// import devServer from './middleware/webpackDevServer'
 
 export default async function createServer({ port , database }) {
 
 	const app = new Koa();
 	const router = new KoaRouter();
+	const devServer = require('./middleware/webpackDevServer').default;
+	devServer(app);
 	mongoose.Promise = Promise
 
 	mongoose.connect(database)

@@ -56,15 +56,17 @@
     "koa-router": "^7.0.1",
     "koa-static": "^3.0.0",
     "lodash": "^4.17.4",
+    "material-ui": "^0.18.0",
     "mobx": "^2.3.0",
     "mobx-react": "^3.3.1",
     "moment": "^2.13.0",
     "mongoose": "^4.9.5",
     "node-getopt": "^0.2.3",
     "pg": "^6.1.5",
-    "react": "^15.1.0",
-    "react-dom": "^15.1.0",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
     "socket.io": "^1.4.6",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "youtube-api-search": "0.0.5"
   }
 }

@@ -5,7 +5,7 @@ import jwt from '../middleware/jwt';
 const router = new KoaRouter();
 
 router
-	.get('/', jwt, postCtrl.list)
-	.post('/', jwt, postCtrl.add)
+	.get('/', postCtrl.list)
+	.post('/', postCtrl.add)
 
 export default router
