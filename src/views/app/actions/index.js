@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 const API_KEY = '878ce3f8c2593464c151641fe22029e1';
-const  ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`
+const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${API_KEY}`
 const POSTS_URL = 'api/posts'
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
+export const FETCH_POSTS = 'FETCH_POSTS';
 
 export function fetchWeather(city) {
 	const url = `${ROOT_URL}&q=${city},ph`;
@@ -12,6 +13,15 @@ export function fetchWeather(city) {
 
 	return {
 		type: FETCH_WEATHER,
+		payload: request
+	}
+}
+
+export function fetchPosts() {
+	const request = axios.get(POSTS_URL);
+
+	return {
+		type : FETCH_POSTS,
 		payload: request
 	}
 }
