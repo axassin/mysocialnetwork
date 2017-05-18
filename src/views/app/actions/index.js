@@ -6,6 +6,7 @@ const POSTS_URL = 'api/posts'
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 export const FETCH_POSTS = 'FETCH_POSTS';
+export const CREATE_POST = 'CREATE_POST'
 
 export function fetchWeather(city) {
 	const url = `${ROOT_URL}&q=${city},ph`;
@@ -25,3 +26,15 @@ export function fetchPosts() {
 		payload: request
 	}
 }
+
+export function createPost(data, callback) {
+	const request = axios.post(POSTS_URL, data)
+		.then(() => { callback() })
+		.catch((err) => console.log("Ga error gali",err));
+
+	return {
+		type: CREATE_POST,
+		payload: request
+	}
+}
+

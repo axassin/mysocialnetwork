@@ -1,15 +1,22 @@
 import Post from '../models/Post';
 
 const list = async (ctx) => {
-	let posts = await Post.list();
+	const posts = await Post.list();
 	ctx.body = posts
 }
 
-const add = (ctx) => {
-	Post.store(ctx.request.body)
+const add = async (ctx) => {
+	await Post.store(ctx.request.body)
+	ctx.status = 201
+}
+
+const show = async (ctx) => {
+	const post = await Post.show(ctx.params.id)
+	ctx.body = post
 }
 
 export default {
 	list,
-	add
+	add,
+	show
 }

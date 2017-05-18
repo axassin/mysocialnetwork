@@ -7,5 +7,6 @@ const router = new KoaRouter();
 router
 	.get('/', postCtrl.list)
 	.post('/', postCtrl.add)
+	.get('/:id', postCtrl.show)
 
 export default router

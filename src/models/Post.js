@@ -20,11 +20,14 @@ PostSchema.statics = {
 		return this.find()
 	},
 	store(data) {
-		let Post = mongoose.model('Post', PostSchema);
-		let  newPost = new Post(data);
+		const Post = mongoose.model('Post', PostSchema);
+		const newPost = new Post(data);
 		newPost.save(function(err){
 			console.log(err)
 		})
+	},
+	show(id) {
+		return this.findById(id)
 	}
 }
 
