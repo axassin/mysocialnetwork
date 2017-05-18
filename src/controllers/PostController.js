@@ -3,6 +3,7 @@ import Post from '../models/Post';
 const list = async (ctx) => {
 	const posts = await Post.list();
 	ctx.body = posts
+	return posts
 }
 
 const add = async (ctx) => {
@@ -15,8 +16,14 @@ const show = async (ctx) => {
 	ctx.body = post
 }
 
+const del = async (ctx) => {
+	await Post.delete(ctx.params.id)
+	ctx.body = list()
+}
+
 export default {
 	list,
 	add,
-	show
+	show,
+	del
 }

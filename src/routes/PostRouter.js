@@ -8,5 +8,6 @@ router
 	.get('/', postCtrl.list)
 	.post('/', postCtrl.add)
 	.get('/:id', postCtrl.show)
+	.del('/:id', postCtrl.del)
 
 export default router

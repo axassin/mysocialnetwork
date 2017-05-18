@@ -28,6 +28,11 @@ PostSchema.statics = {
 	},
 	show(id) {
 		return this.findById(id)
+	},
+	delete(id) {
+		return this.findByIdAndRemove(id, function(params) {
+			return params
+		});
 	}
 }
 

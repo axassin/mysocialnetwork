@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions'
+import { Link } from 'react-router-dom';
 
 class PostList extends Component {
 	componentDidMount() {
@@ -10,9 +11,12 @@ class PostList extends Component {
 
 	renderPostList() {
 		return _.map(this.props.posts, (post) => {
+			const url = `posts/${post._id}`
 			return (
 				<li key={post._id} className="list-group-item">
-					{post.title}
+					<Link to={url}>
+						{post.title}
+					</Link>
 				</li>
 			)	 
 		})

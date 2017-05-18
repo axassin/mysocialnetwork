@@ -6,7 +6,9 @@ const POSTS_URL = 'api/posts'
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 export const FETCH_POSTS = 'FETCH_POSTS';
-export const CREATE_POST = 'CREATE_POST'
+export const FETCH_POST = 'FETCH_POST';
+export const CREATE_POST = 'CREATE_POST';
+export const DELETE_POST = 'DELETE_POST';
 
 export function fetchWeather(city) {
 	const url = `${ROOT_URL}&q=${city},ph`;
@@ -34,6 +36,28 @@ export function createPost(data, callback) {
 
 	return {
 		type: CREATE_POST,
+		payload: request
+	}
+}
+
+export function fetchPost(id) {
+	const request = axios.get(`${POSTS_URL}/${id}`)
+	return {
+		type: FETCH_POST,
+		payload: request
+	}
+}
+
+export function deletePost(id, callback) {
+	const request = axios.delete(`${POSTS_URL}/${id}`)
+		.then(()=> {
+			console.log("deleted",id);
+			callback();
+		})
+		.catch(err => console.log(err));
+
+	return {
+		type: DELETE_POST,
 		payload: request
 	}
 }
